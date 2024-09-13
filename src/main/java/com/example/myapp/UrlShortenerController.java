@@ -1,0 +1,20 @@
+package com.example.myapp;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class UrlShortenerController {
+    @Autowired
+    private UrlService urlService;
+    @GetMapping("/urlShort")
+    public String urlShort() {
+        return "urlShort";
+    }
+    @PostMapping("/shorten")
+    public String shortenUrl(String url) {
+        return urlService.createShortUrl(url);
+    }
+}
