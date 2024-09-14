@@ -10,6 +10,7 @@ public class UrlService {
 
     private final UrlRepository urlRepository;
 
+    @Autowired
     public UrlService(UrlRepository urlRepository) {
         this.urlRepository = urlRepository;
     }
@@ -24,10 +25,10 @@ public class UrlService {
         urlRepository.save(url);
         return shortUrl;
     }
-    public String getOriginalUrl(String shortUrl){
-        Url url = urlRepository.findByShortUrl(shortUrl);
-        return url.getLongUrl();
-    }
+//    public String getOriginalUrl(String shortUrl){
+//        Url url = urlRepository.findByShortUrl(shortUrl);
+//        return url.getLongUrl();
+//    }
 
     private String generateShortUrl(){
     int length = 6;

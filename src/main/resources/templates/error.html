@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+</head>
+<body>
+<h1>Error Page</h1>
+<p>Status Code: <span th:text="${statusCode}"></span></p>
+<p>Error Message: <span th:text="${errorMessage}"></span></p>
+
+<!-- Uncomment this section to display stack trace (useful for development) -->
+
+<h2>Stack Trace:</h2>
+<pre th:text="${#strings.arrayJoin(stackTrace, '\n')}"></pre>
+
+</body>
+</html>
