@@ -3,6 +3,7 @@ package com.example.myapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -15,6 +16,9 @@ public class UrlService {
         this.urlRepository = urlRepository;
     }
 
+    public List<Url> getAllUrls() {
+        return urlRepository.findAll();
+    }
 
 
     public String createShortUrl(String originalUrl){
@@ -25,16 +29,19 @@ public class UrlService {
         urlRepository.save(url);
         return shortUrl;
     }
-//    public String getOriginalUrl(String shortUrl){
-//        Url url = urlRepository.findByShortUrl(shortUrl);
-//        return url.getLongUrl();
-//    }
+    public String getOriginalUrl(String shortUrl){
+        StringBuilder sb = new StringBuilder();
+        sb.append("localhost:8080/");
+        Url url = urlRepository.findByShortUrl(String.valueOf(sb.append(shortUrl)));
+        return url != null ? url.getLongUrl() : null;
+    }
 
     private String generateShortUrl(){
     int length = 6;
     String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     Random random = new Random();
     StringBuilder sb = new StringBuilder();
+    sb.append("localhost:8080/");
     for (int i = 0; i < length; i++) {
         int index = random.nextInt(chars.length());
         sb.append(chars.charAt(index));

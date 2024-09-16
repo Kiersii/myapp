@@ -1,4 +1,1 @@
-#wstęp
-never waste talent
-TODO:
-url validation and error handling,testing
+Behold! the best myapp ever!

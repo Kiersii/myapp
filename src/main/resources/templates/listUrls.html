@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of URLs</title>
+</head>
+<body>
+<h2>List of Shortened URLs</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Original URL</th>
+        <th>Short URL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Thymeleaf loop to iterate over the list of URLs -->
+    <tr th:each="url : ${urls}">
+        <td th:text="${url.id}"></td>
+        <td th:text="${url.longUrl}"></td>
+        <td th:text="${url.shortUrl}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/urlShort">Go to Shortener Form</a>
+</body>
+</html>
