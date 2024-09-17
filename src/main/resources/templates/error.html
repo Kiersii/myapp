@@ -10,10 +10,7 @@
 <p>Status Code: <span th:text="${statusCode}"></span></p>
 <p>Error Message: <span th:text="${errorMessage}"></span></p>
 
-<!-- poprawić wyświetlanie poniżej -->
-
 <h2>Stack Trace:</h2>
-<pre th:text="${#strings.arrayJoin(stackTrace, '\n')}"></pre>
-
+<div th:utext="${#strings.arrayJoin(stackTrace, '<br/>')}"></div>
 </body>
 </html>

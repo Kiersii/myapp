@@ -21,7 +21,6 @@ public class UrlShortenerController {
         return "urlShort";
     }
 
-    //sprawdzic to postamen
     @PostMapping("/shorten")
     public String shortenUrl(@RequestParam("url") String longUrl, Model model) {
         String shortUrl = urlService.createShortUrl(longUrl);
@@ -29,6 +28,17 @@ public class UrlShortenerController {
         model.addAttribute("longUrl", longUrl);
         model.addAttribute("shortUrl", shortUrl);
         return "result";  // Returns a page that shows the shortened URL (e.g., result.html)
+    }
+    @PostMapping("/removeFirstUrl")
+    public String  removeFirstUrl() {
+        urlService.removeFirstUrl();
+        return "redirect:/listUrls";
+    }
+
+    @PostMapping("/removeLastUrl")
+    public String removeLastUrl() {
+        urlService.removeLastUrl();
+        return "redirect:/listUrls";
     }
 
     @GetMapping("/listUrls")

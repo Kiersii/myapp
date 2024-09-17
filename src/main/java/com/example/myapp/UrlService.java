@@ -36,6 +36,7 @@ public class UrlService {
         return url != null ? url.getLongUrl() : null;
     }
 
+
     private String generateShortUrl(){
     int length = 6;
     String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -47,6 +48,14 @@ public class UrlService {
         sb.append(chars.charAt(index));
     }
     return sb.toString();
+    }
+    //TODO handle null values
+    public void removeFirstUrl() {
+         urlRepository.delete(urlRepository.findFirstByOrderByIdAsc());
+    }
+
+    public void removeLastUrl() {
+        urlRepository.delete(urlRepository.findFirstByOrderByIdDesc());
     }
 
 }
