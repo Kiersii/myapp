@@ -29,23 +29,7 @@ public class UrlShortenerController {
         model.addAttribute("shortUrl", shortUrl);
         return "result";  // Returns a page that shows the shortened URL (e.g., result.html)
     }
-    @PostMapping("/removeFirstUrl")
-    public String  removeFirstUrl() {
-        urlService.removeFirstUrl();
-        return "redirect:/listUrls";
-    }
 
-    @PostMapping("/removeLastUrl")
-    public String removeLastUrl() {
-        urlService.removeLastUrl();
-        return "redirect:/listUrls";
-    }
-
-    @GetMapping("/listUrls")
-    public String getAllUrls(Model model){
-        model.addAttribute("urls", urlService.getAllUrls());
-        return "listUrls";
-    }
     @GetMapping("/{shortUrl}")
     public void redirectToOriginalUrl(@PathVariable String shortUrl, HttpServletResponse response) throws IOException {
         String originalUrl = urlService.getOriginalUrl(shortUrl);

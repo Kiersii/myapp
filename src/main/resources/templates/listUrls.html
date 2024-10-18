@@ -7,7 +7,7 @@
 <body>
 <h2>List of Shortened URLs</h2>
 
-<table border="1">
+<table>
     <thead>
     <tr>
         <th>ID</th>
@@ -25,10 +25,10 @@
     </tbody>
 </table>
 
-<form action="http://localhost:8080/removeFirstUrl" method="post">
+<form action="/removeFirstUrl" method="post">
     <input type="submit" value="Remove first URL">
 </form>
-<form action="http://localhost:8080/removeLastUrl" method="post">
+<form action="/removeLastUrl" method="post">
     <input type="submit" value="Remove last URL">
 </form>
 
