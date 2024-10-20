@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Skracacz</title>
+    <script src="/js/validate.js"></script>
 </head>
 <body>
 <h2>URL Shortener</h2>
 
-<form action="/shorten" method="post">
+<form action="/shorten" method="post" onsubmit="return validateUrl(document.getElementById('url').value)">
     <label for="url">Long URL:</label><br>
     <input type="text" id="url" name="url"><br>
     <input type="submit" value="Submit">
