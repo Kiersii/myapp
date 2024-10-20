@@ -1,5 +1,6 @@
 package com.example.myapp;
 
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ public class UrlShortenerController {
     }
 
     @PostMapping("/shorten")
-    public String shortenUrl(@RequestParam("url") String longUrl, Model model) {
+    public String shortenUrl(@RequestParam("url") @Pattern(regexp = "^(https?:\\/\\/)?([\\da-z.-]+)\\.([a-z.]{2,6})([\\/\\w .-]*)*\\/?$") String longUrl, Model model) {
         String shortUrl = urlService.createShortUrl(longUrl);
         // Pass both original and short URL to the view
         model.addAttribute("longUrl", longUrl);
