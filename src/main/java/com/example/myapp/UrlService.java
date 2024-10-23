@@ -3,6 +3,7 @@ package com.example.myapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -26,6 +27,11 @@ public class UrlService {
         Url url = new Url();
         url.setLongUrl(originalUrl);
         url.setShortUrl(shortUrl);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, 1);
+        url.setExpirationDate(calendar.getTime());
+
         urlRepository.save(url);
         return shortUrl;
     }
@@ -33,7 +39,13 @@ public class UrlService {
         StringBuilder sb = new StringBuilder();
         sb.append("localhost:8080/");
         Url url = urlRepository.findByShortUrl(String.valueOf(sb.append(shortUrl)));
-        return url != null ? url.getLongUrl() : null;
+        if(url != null){
+            url.setUrlOpenCount(url.getUrlOpenCount() + 1);
+            urlRepository.save(url);
+            return url.getLongUrl();
+        }
+
+        return null;
     }
 
 

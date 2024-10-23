@@ -13,6 +13,8 @@
         <th>ID</th>
         <th>Original URL</th>
         <th>Short URL</th>
+        <th>URL Open Count</th>
+        <th>Expiration Date</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +23,8 @@
         <td th:text="${url.id}"></td>
         <td th:text="${url.longUrl}"></td>
         <td th:text="${url.shortUrl}"></td>
+        <td th:text="${url.urlOpenCount}"></td>
+        <td th:text="${url.expirationDate}"></td>
     </tr>
     </tbody>
 </table>
