@@ -22,5 +22,7 @@ public class Url {
     private Date expirationDate;
     @Getter
     private Long urlOpenCount = 0L;
+    @Getter
+    private String category;
 
 }
