@@ -18,7 +18,7 @@ public class UrlService {
     }
 
     public List<Url> getAllUrls() {
-        return urlRepository.findAll();
+        return urlRepository.findAllByOrderByIdAsc();
     }
 
 
