@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -22,8 +23,12 @@ public class UrlService {
     }
 
 
-    public String createShortUrl(String originalUrl){
-        String shortUrl = generateShortUrl();
+    public String createShortUrl(String originalUrl, String suffix) {
+        String shortUrl;
+        do {
+            shortUrl = generateShortUrl(suffix);
+        } while (urlRepository.findByShortUrl(shortUrl) != null);
+
         Url url = new Url();
         url.setLongUrl(originalUrl);
         url.setShortUrl(shortUrl);
@@ -49,7 +54,19 @@ public class UrlService {
     }
 
 
-    private String generateShortUrl(){
+    private String generateShortUrl(String suffix){
+        if(!Objects.equals(suffix, "")){
+
+            String chars = "0123456789";
+            Random random = new Random();
+            StringBuilder sb = new StringBuilder();
+            sb.append("localhost:8080/").append(suffix);
+            for (int i = 0; i < 4; i++) {
+                int index = random.nextInt(chars.length());
+                sb.append(chars.charAt(index));
+            }
+            return sb.toString();
+        }
     int length = 6;
     String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     Random random = new Random();

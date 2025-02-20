@@ -27,7 +27,7 @@ public class UrlShortenerController {
 
     @PostMapping("/shorten")
     public ResponseEntity<UrlResponse> shortenUrl(@RequestBody @Valid UrlRequest urlRequest) {
-        String shortUrl = urlService.createShortUrl(urlRequest.getUrl());
+        String shortUrl = urlService.createShortUrl(urlRequest.getUrl(), urlRequest.getSuffix());
 //        System.out.println(urlRequest.getUrl());
 //        System.out.println(shortUrl);
         return ResponseEntity.ok(new UrlResponse(shortUrl));
